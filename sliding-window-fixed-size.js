@@ -54,13 +54,19 @@ function findLargestSubarray1(arr, n) {
 
 function slidingWindow(arr, n) {
   let max = 0
+  let currentSum = 0
   for (let i = 0; i < n; i++) {
-    max += arr[i]
+    currentSum += arr[i]
   }
   // console.log(max)
+  max = currentSum
   for (let i = 1; i < arr.length - n; i++) {
-    const currentSum = max - arr[i] + arr[i + n]
+    currentSum = max - arr[i] + arr[i + n - 1]
+    if (currentSum > max) {
+      max = currentSum
+    }
   }
+  return max
 }
 
 // slidingWindow(random_numbers, 20)
